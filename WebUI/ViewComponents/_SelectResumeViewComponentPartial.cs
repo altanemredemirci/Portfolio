@@ -13,11 +13,11 @@ namespace WebUI.ViewComponents
             educationService = new EducationService();
             experinceService = new ExperinceService();
         }
-        public IViewComponentResult Invoke()
+        public async Task<IViewComponentResult> InvokeAsync()
         {
             ViewBag.Experinces = experinceService.GetExperinces();
 
-            var list = educationService.GetEducations();
+            var list = await educationService.GetEducationsAsync();
             return View(list);
         }
     }

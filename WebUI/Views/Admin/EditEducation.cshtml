@@ -1,0 +1,82 @@
+﻿@model List<Education>
+
+@{
+    ViewData["Title"] = "EditEducation";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<style>
+    .form-group {
+        margin-top: 1rem;
+    }
+</style>
+
+<main class="app-main">
+    <!--begin::App Content Header--> <div class="app-content-header">
+        <!--begin::Container--> <div class="container-fluid">
+            <!--begin::Row--> <div class="row">
+                <div class="col-sm-6"> <h3 class="mb-0">@ViewData["Title"]</h3> </div> <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-end">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">
+                            Dashboard
+                        </li>
+                    </ol>
+                </div>
+            </div> <!--end::Row-->
+        </div> <!--end::Container-->
+    </div> <!--end::App Content Header--> <!--begin::App Content-->
+    <div class="app-content">
+        <!--begin::Container-->
+        <div class="container-fluid">
+            <div class="row">
+                @foreach (var edu in Model)
+                {
+                    <div class="col-md-4 offset-1">
+                       
+                        <form asp-action="EditEducation" class="mt-5">
+                            <h1 class="text-primary">@edu.Degree</h1>
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input type="hidden" name="Id" value="@edu.Id" />
+                            <div class="form-group">
+                                <label asp-for="@edu.SchoolName" class="control-label"></label>
+                                <input type="text" name="SchoolName" value="@edu.SchoolName" class="form-control" />
+                                <span asp-validation-for="@edu.SchoolName" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="@edu.StartDate" class="control-label"></label>
+                                <input type="number" name="StartDate" value="@edu.StartDate" min="1990" max="@DateTime.Now.Year" class="form-control" />
+                                <span asp-validation-for="@edu.StartDate" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="@edu.EndDate" class="control-label"></label>
+                                <input type="datetime" name="EndDate" value="@edu.EndDate" min="1990" max="@(DateTime.Now.Year + 4)" class="form-control" />
+                                <span asp-validation-for="@edu.EndDate" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="@edu.Degree" class="control-label"></label>
+                                <input type="text" name="Degree" value="@edu.Degree" class="form-control" />
+                                <span asp-validation-for="@edu.Degree" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="@edu.Text" class="control-label"></label>
+                                <input type="text" name="Text" value="@edu.Text" class="form-control" />
+                                <span asp-validation-for="@edu.Text" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" value="Güncelle" class="btn btn-primary" />
+                            </div>
+                        </form>
+                    </div>
+                }
+
+
+
+
+            </div>
+
+
+            <!--begin::Row-->
+
+        </div> <!--end::Container-->
+    </div> <!--end::App Content-->
+</main> <!--end::App Main-->

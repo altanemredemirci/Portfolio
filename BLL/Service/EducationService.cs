@@ -17,9 +17,19 @@ namespace BLL.Service
             educationDal = new EducationDal();
         }
 
-        public List<Education> GetEducations()
+        public async Task<List<Education>> GetEducationsAsync()
         {
-            return educationDal.GetEducations();
+            return await educationDal.GetEducationsAsync();
+        }
+
+        public async Task<Education> GetByIdAsync(int id)
+        {
+            return await educationDal.GetByIdAsync(id);
+        }
+
+        public async Task UpdateAsync()
+        {
+            await educationDal.UpdateAsync();
         }
     }
 }

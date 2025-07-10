@@ -19,7 +19,7 @@
                 {
                     <div class="resume-item">
                         <h4>@item.SchoolName</h4>
-                        <h5>@item.StartDate.Year - @item.EndDate.Year</h5>
+                        <h5>@item.StartDate - @item.EndDate</h5>
                         <p><em>@item.Degree</em></p>
                         <p>@item.Text</p>
                     </div>
@@ -38,7 +38,7 @@
                 {
                     <div class="resume-item">
                         <h4>@item.Title</h4>
-                        <h5>@item.StartDate.Year - @(item.EndDate==null ? "Devam Ediyor" : item.EndDate.Value.Year)</h5>
+                        <h5>@item.StartDate - @(item.EndDate==null ? "Devam Ediyor" : item.EndDate)</h5>
                         <p><em>@item.CompanyName </em></p>
                         <p>@item.Text</p>
                     </div>

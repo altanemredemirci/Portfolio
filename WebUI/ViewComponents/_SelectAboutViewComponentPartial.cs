@@ -11,9 +11,9 @@ namespace WebUI.ViewComponents
         {
             aboutService = new AboutService();
         }
-        public IViewComponentResult Invoke()
+        public async Task<IViewComponentResult> InvokeAsync()
         {
-            var about = aboutService.GetAbout();
+            var about = await aboutService.GetAboutAsync();
             return View(about);
         }
     }

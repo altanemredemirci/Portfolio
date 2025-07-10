@@ -9,6 +9,13 @@ namespace WebUI.Controllers
     {
         private readonly ProfileService _profileService = new ProfileService();
         private readonly AboutService _aboutService = new AboutService();
+        private readonly EducationService _educationService = new EducationService();
+
+        public IActionResult Index()
+        {
+            return View();
+        }
+
 
         public async Task<IActionResult> EditProfile()
         {
@@ -50,7 +57,7 @@ namespace WebUI.Controllers
 
         public async Task<IActionResult> EditAbout()
         {
-            var model = _aboutService.GetAbout();
+            var model = await _aboutService.GetAboutAsync();
             return View(model);
         }
 
@@ -62,7 +69,7 @@ namespace WebUI.Controllers
             ModelState.Remove("file");
             if (ModelState.IsValid)
             {
-                var about = _aboutService.GetAbout();
+                var about = await _aboutService.GetAboutAsync();
 
                 if (file != null)
                 {
@@ -79,11 +86,41 @@ namespace WebUI.Controllers
                 about.Age = model.Age;
                 about.City = model.City;
                 about.Website = model.Website;
+                about.Title = model.Title;
 
                 await _aboutService.UpdateAboutAsync(about);
 
                 return RedirectToAction("Index", "Home");
             }
+            return View(model);
+        }
+
+
+        public async Task<IActionResult> EditEducation()
+        {
+            var model = await _educationService.GetEducationsAsync();
+            return View(model);
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> EditEducation(Education model)
+        {
+            var education = await _educationService.GetByIdAsync(model.Id);
+
+            if (education != null)
+            {
+                education.StartDate = model.StartDate;
+                education.EndDate = model.EndDate;
+                education.Text = model.Text;
+                education.SchoolName = model.SchoolName;
+                education.Degree = model.Degree;
+
+               await _educationService.UpdateAsync();
+
+                return RedirectToAction("Index", "Admin");
+            }
+
             return View(model);
         }
     }

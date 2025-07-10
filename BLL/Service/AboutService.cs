@@ -16,9 +16,9 @@ namespace BLL.Service
         {
             aboutDal = new AboutDal();
         }
-        public About GetAbout()
+        public async Task<About> GetAboutAsync()
         {
-            return aboutDal.GetAbout();
+            return await aboutDal.GetAboutAsync();
         }
 
         public async Task UpdateAboutAsync(About about)

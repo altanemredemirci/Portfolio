@@ -14,11 +14,11 @@ namespace Entity
         [StringLength(30)]
         public string CompanyName { get; set; }
 
-        [DataType(DataType.Date)]
-        public DateTime StartDate { get; set; }
+        
+        public int StartDate { get; set; }
 
-        [DataType(DataType.Date)]
-        public DateTime? EndDate { get; set; }
+        
+        public int? EndDate { get; set; }
 
         [MaxLength(200)]
         public string Title { get; set; }

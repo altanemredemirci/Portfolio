@@ -12,7 +12,7 @@ namespace DAL.Context
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=202-3\\SQLDERS; Database=Portfolio; Uid=sa; Pwd=1; TrustServerCertificate=true");
+            optionsBuilder.UseSqlServer("Server=DESKTOP-58CMK8T\\SQLDERS; Database=Portfolio; Uid=sa; Pwd=1; TrustServerCertificate=true");
         }
 
         public DbSet<Profile> Profiles { get; set; }

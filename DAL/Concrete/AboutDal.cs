@@ -1,5 +1,6 @@
 ﻿using DAL.Context;
 using Entity;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,9 +18,9 @@ namespace DAL.Concrete
             _context = new DataContext();
         }
 
-        public About GetAbout()
+        public async Task<About> GetAboutAsync()
         {
-            return _context.Abouts.FirstOrDefault();
+            return await _context.Abouts.FirstOrDefaultAsync();
         }
 
         public async Task UpdateAboutAsync(About about)
